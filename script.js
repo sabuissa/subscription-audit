@@ -2,7 +2,22 @@
 
 // ── State ──────────────────────────────────────────────────────────────────
 
-let subscriptions = [];
+const STORAGE_KEY = 'subscription-audit-data';
+
+function save() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(subscriptions));
+}
+
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+let subscriptions = load();
 
 // ── Pure logic functions ───────────────────────────────────────────────────
 
@@ -137,16 +152,19 @@ function render() {
 
 function addSubscription(name, amount, cycle, renewalDate) {
   subscriptions.push({ name, amount, cycle, renewalDate });
+  save();
   render();
 }
 
 function deleteSubscription(index) {
   subscriptions.splice(index, 1);
+  save();
   render();
 }
 
 function resetAll() {
   subscriptions = [];
+  save();
   render();
 }
 
