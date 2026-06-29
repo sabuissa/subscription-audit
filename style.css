@@ -9,14 +9,14 @@
   --surface: #ffffff;
   --border: #e0e0e0;
   --text: #1a1a1a;
-  --text-muted: #666666;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
+  --text-muted: #6b7280;
+  --accent: #1a7f5a;
+  --accent-hover: #155f44;
   --danger: #dc2626;
   --danger-hover: #b91c1c;
   --warning-bg: #fef3c7;
   --warning-border: #f59e0b;
-  --warning-text: #92400e;
+  --warning-text: #b45309;
   --radius: 6px;
   --shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
@@ -27,12 +27,12 @@ body {
   line-height: 1.5;
   background: var(--bg);
   color: var(--text);
-  padding: 24px 16px 48px;
+  padding: 32px 16px 64px;
 }
 
 header {
   max-width: 720px;
-  margin: 0 auto 24px;
+  margin: 0 auto 28px;
 }
 
 h1 {
@@ -46,14 +46,14 @@ main {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 28px;
 }
 
 /* ── Summary ── */
 .summary {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  gap: 16px;
 }
 
 .summary-card {
@@ -61,28 +61,45 @@ main {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 16px;
+  padding: 22px 24px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .summary-label {
-  font-size: 0.75rem;
-  font-weight: 600;
+  font-size: 0.68rem;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.09em;
   color: var(--text-muted);
 }
 
+/* Base size for Annual and Renewing Soon */
 .summary-value {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--text);
 }
 
+/* Monthly gets the most visual weight */
+#total-monthly {
+  font-size: 2.4rem;
+}
+
+/* Annual is secondary */
+#total-annual {
+  font-size: 1.9rem;
+}
+
+/* Renewing Soon: amber tint on the card when nonzero, neutral when zero */
+#renewal-card.has-renewals {
+  background: var(--warning-bg);
+  border-color: var(--warning-border);
+}
+
 #renewal-card.has-renewals .summary-value {
-  color: var(--danger);
+  color: var(--warning-text);
 }
 
 /* ── Controls ── */
@@ -91,10 +108,10 @@ main {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  padding: 20px;
+  padding: 24px 28px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 fieldset {
@@ -142,7 +159,7 @@ input:focus,
 select:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
+  box-shadow: 0 0 0 2px rgba(26,127,90,0.15);
 }
 
 .form-error {
@@ -224,7 +241,7 @@ select:focus {
   grid-template-columns: 1fr auto auto auto;
   align-items: center;
   gap: 12px;
-  padding: 14px 16px;
+  padding: 16px 20px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -235,7 +252,7 @@ select:focus {
 .sub-item.warning {
   background: var(--warning-bg);
   border-left: 3px solid var(--warning-border);
-  padding-left: 13px;
+  padding-left: 17px;
 }
 
 .sub-name {
@@ -300,7 +317,7 @@ select:focus {
 
 /* ── Empty state ── */
 .empty-state {
-  padding: 48px 24px;
+  padding: 56px 24px;
   text-align: center;
   color: var(--text-muted);
 }
