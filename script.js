@@ -187,8 +187,11 @@ document.getElementById('add-form').addEventListener('submit', e => {
   const renewal   = document.getElementById('input-renewal').value;
 
   if (validateAndAdd(name, amount, cycle, renewal)) {
-    e.target.reset();
+    document.getElementById('input-name').value = '';
+    document.getElementById('input-amount').value = '';
     document.getElementById('input-cycle').value = 'monthly';
+    document.getElementById('input-renewal').value = '';
+    document.getElementById('form-error').textContent = '';
   }
 });
 
@@ -196,8 +199,6 @@ document.getElementById('sort-select').addEventListener('change', render);
 
 document.getElementById('reset-btn').addEventListener('click', () => {
   if (subscriptions.length === 0) return;
-  const confirmed = document.createElement('span');
-  // Inline confirmation: toggle a confirm state on the button instead of alert()
   const btn = document.getElementById('reset-btn');
   if (btn.dataset.confirming === 'true') {
     resetAll();
